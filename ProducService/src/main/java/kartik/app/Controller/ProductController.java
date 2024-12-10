@@ -1,6 +1,7 @@
 package kartik.app.Controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,15 @@ public class ProductController {
 	@PostMapping
 	public ResponseEntity<Product> addProduct(@RequestBody Product product)
 	{
+		
+		System.out.print(product.getName());
+		System.out.print(product.getCatagory());
+		System.out.print(product.getDescription());
+		System.out.print(product.getId());
+		System.out.print(product.getQuantity());
+
+		String idString = UUID.randomUUID().toString();
+		product.setId(idString);
 		Product product2 = pService.addProduct(product);
 		return ResponseEntity.status(HttpStatus.CREATED).body(product2);
 	}
